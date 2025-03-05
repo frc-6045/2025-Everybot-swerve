@@ -21,6 +21,11 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
+import frc.robot.subsystems.SwerveSubsystem;
+
+import java.io.File;
+
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -44,6 +49,10 @@ public class RobotContainer {
   private final CommandXboxController m_operatorController = 
       new CommandXboxController(OperatorConstants.OPERATOR_CONTROLLER_PORT);
 
+  private final SwerveSubsystem       drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
+                                                                                "swerve/neo"));
+      
+
   // The autonomous chooser
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -59,6 +68,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Set up command bindings
     configureBindings();
+    Bindings.initBindings(drivebase, m_driverController);
     // Set the options to show up in the Dashboard for selecting auto modes. If you
     // add additional auto modes you can add additional lines here with
     // autoChooser.addOption
@@ -77,33 +87,6 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-
-    /** 
-     * Set the default command for the drive subsystem to an instance of the
-     * DriveCommand with the values provided by the joystick axes on the driver
-     * controller. The Y axis of the controller is inverted so that pushing the
-     * stick away from you (a negative value) drives the robot forwards (a positive
-     * value). Similarly for the X axis where we need to flip the value so the
-     * joystick matches the WPILib convention of counter-clockwise positive
-     */
-    m_drive.setDefaultCommand(new DriveCommand(m_drive,
-        () -> -m_driverController.getLeftY(),
-        () -> -m_driverController.getRightX(),
-        () -> true));
-
-    /**
-     * Holding the left bumper (or whatever button you assign) will multiply the speed
-     * by a decimal to limit the max speed of the robot -> 
-     * 1 (100%) from the controller * .9 = 90% of the max speed when held (we also square it)
-     * 
-     * Slow mode is very valuable for line ups and the deep climb 
-     * 
-     * When switching to single driver mode switch to the B button
-     */
-    m_driverController.leftBumper().whileTrue(new DriveCommand(m_drive, 
-        () -> -m_driverController.getLeftY() * DriveConstants.SLOW_MODE_MOVE,  
-        () -> -m_driverController.getRightX() * DriveConstants.SLOW_MODE_TURN,
-        () -> true));
 
     /**
      * Here we declare all of our operator commands, these commands could have been

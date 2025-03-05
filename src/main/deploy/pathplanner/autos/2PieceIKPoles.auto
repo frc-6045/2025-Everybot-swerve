@@ -1,0 +1,103 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "WallStartToIPole1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralL4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "WallStartToIPole2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralSpit"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "IPoleToHPS1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralIntakeSetpoint"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "IPoleToHPS2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralIntake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HPSToKPole1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralL4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "HPSToKPole2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralSpit"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "KPoleToHPS1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "homePosition"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "elevatorDown"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "3PieceIKJPoles",
+  "choreoAuto": false
+}

@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.util.Units;
+import swervelib.math.Matter;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean
@@ -27,6 +31,13 @@ public final class Constants {
     public static final double DRIVE_MOTOR_VOLTAGE_COMP = 12;
     public static final double SLOW_MODE_MOVE = 0.5;
     public static final double SLOW_MODE_TURN = 0.6;
+  }
+
+  public static final class SwerveConstants {
+    public static final double ROBOT_MASS = (148 - 20.3) * 0.453592; // 32lbs * kg per pound
+    public static final Matter CHASSIS    = new Matter(new Translation3d(0, 0, Units.inchesToMeters(8)), ROBOT_MASS);
+    public static final double LOOP_TIME  = 0.13; //s, 20ms + 110ms sprk max velocity lag
+    public static final double MAX_SPEED  = Units.feetToMeters(14.5);
   }
 
   public static final class RollerConstants {
@@ -60,5 +71,10 @@ public final class Constants {
   public static final class OperatorConstants {
     public static final int DRIVER_CONTROLLER_PORT = 0;
     public static final int OPERATOR_CONTROLLER_PORT = 1;
+
+    public static final double DEADBAND        = 0.1;
+    public static final double LEFT_Y_DEADBAND = 0.1;
+    public static final double RIGHT_X_DEADBAND = 0.1;
+    public static final double TURN_CONSTANT    = 6;
   }
 }
