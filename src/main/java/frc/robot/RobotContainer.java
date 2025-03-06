@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.autos.DriveForwardAuto;
 import frc.robot.autos.SimpleCoralAuto;
@@ -16,7 +15,6 @@ import frc.robot.commands.ClimberDownCommand;
 import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.CoralOutCommand;
 import frc.robot.commands.CoralStackCommand;
-import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
