@@ -40,7 +40,7 @@ public class Bindings {
    * Clone's the angular velocity input stream and converts it to a robotRelative input stream.
    */
 /*  SwerveInputStream driveRobotOriented = driveAngularVelocity.copy().robotRelative(true)
-                                                             .allianceRelativeControl(fals      e);
+                                                             .allianceRelativeControl(false);
                                                              */
   SwerveInputStream driveAngularVelocityKeyboard = SwerveInputStream.of(drivebase.getSwerveDrive(),
                                                                         () -> -driverXbox.getLeftY(),
