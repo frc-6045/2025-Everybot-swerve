@@ -45,10 +45,6 @@ public class RobotContainer {
   private final CommandXboxController m_operatorController = 
       new CommandXboxController(OperatorConstants.OPERATOR_CONTROLLER_PORT);
 
-  private final SwerveSubsystem       drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
-                                                                                "swerve/neo"));
-      
-
   // The autonomous chooser
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -65,7 +61,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Set up command bindings
     configureBindings();
-    Bindings.initBindings(drivebase, m_driverController);
+    Bindings.initBindings(m_drive, m_driverController);
     // Set the options to show up in the Dashboard for selecting auto modes. If you
     // add additional auto modes you can add additional lines here with
     // autoChooser.addOption

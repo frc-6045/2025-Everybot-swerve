@@ -21,18 +21,6 @@ import swervelib.math.Matter;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static final class DriveConstants {
-    public static final int LEFT_LEADER_ID = 1;
-    public static final int LEFT_FOLLOWER_ID = 2;
-    public static final int RIGHT_LEADER_ID = 3;
-    public static final int RIGHT_FOLLOWER_ID = 4;
-
-    public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
-    public static final double DRIVE_MOTOR_VOLTAGE_COMP = 12;
-    public static final double SLOW_MODE_MOVE = 0.5;
-    public static final double SLOW_MODE_TURN = 0.6;
-  }
-
   public static final class SwerveConstants {
     public static final double ROBOT_MASS = (148 - 20.3) * 0.453592; // 32lbs * kg per pound
     public static final Matter CHASSIS    = new Matter(new Translation3d(0, 0, Units.inchesToMeters(8)), ROBOT_MASS);
