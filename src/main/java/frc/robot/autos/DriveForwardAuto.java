@@ -2,10 +2,10 @@ package frc.robot.autos;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class DriveForwardAuto extends Command {
-    private DriveSubsystem m_drive;
+    private SwerveSubsystem m_drive;
     private Timer timer;
     private double drive_seconds = 3.25;
 
@@ -23,7 +23,7 @@ public class DriveForwardAuto extends Command {
      * 
      * @param drive
      */
-    public DriveForwardAuto(DriveSubsystem drive)
+    public DriveForwardAuto(SwerveSubsystem drive)
     {
         m_drive = drive;
         
@@ -45,7 +45,7 @@ public class DriveForwardAuto extends Command {
     // drive at 30% speed
     if(timer.get() < drive_seconds)
     {
-        m_drive.driveArcade(0.3, 0.0,false);
+        m_drive.driveToDistanceCommand(1, 0.5);
     }
   }
 
@@ -53,7 +53,7 @@ public class DriveForwardAuto extends Command {
   @Override
   public void end(boolean isInterrupted) {
     // stop drive motors
-    m_drive.driveArcade(0.0, 0.0, false);
+    m_drive.driveToDistanceCommand(0, 0);
     timer.stop();
   }
 

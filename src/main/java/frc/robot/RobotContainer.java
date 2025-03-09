@@ -6,7 +6,6 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.autos.DriveForwardAuto;
-import frc.robot.autos.SimpleCoralAuto;
 import frc.robot.commands.AlgieInCommand;
 import frc.robot.commands.AlgieOutCommand;
 import frc.robot.commands.ArmDownCommand;
@@ -17,7 +16,6 @@ import frc.robot.commands.CoralOutCommand;
 import frc.robot.commands.CoralStackCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -56,10 +54,11 @@ public class RobotContainer {
 
   public final RollerSubsystem m_roller = new RollerSubsystem();
   public final ArmSubsystem m_arm = new ArmSubsystem();
-  public final DriveSubsystem m_drive = new DriveSubsystem();
+  public final SwerveSubsystem m_drive = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
+  "swerve/neo"));
   public final ClimberSubsystem m_climber = new ClimberSubsystem();
 
-  public final SimpleCoralAuto m_simpleCoralAuto = new SimpleCoralAuto(m_drive, m_roller, m_arm);
+  //public final SimpleCoralAuto m_simpleCoralAuto = new SimpleCoralAuto(m_drive, m_roller, m_arm);
   public final DriveForwardAuto m_driveForwardAuto = new DriveForwardAuto(m_drive);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -70,8 +69,8 @@ public class RobotContainer {
     // Set the options to show up in the Dashboard for selecting auto modes. If you
     // add additional auto modes you can add additional lines here with
     // autoChooser.addOption
-    m_chooser.setDefaultOption("Coral Auto", m_simpleCoralAuto);
-    m_chooser.addOption("Drive Forward Auto", m_driveForwardAuto);
+    //m_chooser.addOption("Coral Auto", m_simpleCoralAuto);
+    m_chooser.setDefaultOption("Drive Forward Auto", m_driveForwardAuto);
     SmartDashboard.putData(m_chooser);
   }
 
