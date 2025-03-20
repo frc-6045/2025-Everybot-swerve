@@ -102,6 +102,13 @@ public class RobotContainer {
     m_operatorController.leftBumper().whileTrue(new ArmUpCommand(m_arm));
     m_operatorController.leftTrigger(.2).whileTrue(new ArmDownCommand(m_arm));
 
+
+
+//zero gyro
+    m_driverController.a().onTrue((Commands.runOnce(m_drive::zeroGyro)));
+
+
+
     /**
      * Used to score coral, the stack command is for when there is already coral
      * in L1 where you are trying to score. The numbers may need to be tuned, 

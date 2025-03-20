@@ -22,8 +22,8 @@ public class Bindings {
    * Converts driver input into a field-relative ChassisSpeeds that is controlled by angular velocity.
    */
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
-                                                                () -> driverXbox.getLeftY() * -1,
-                                                                () -> driverXbox.getLeftX() * -1)
+                                                                () -> driverXbox.getLeftY() * -1, //-1
+                                                                () -> driverXbox.getLeftX() * -1) //-1
                                                             .withControllerRotationAxis(()->{return -driverXbox.getRightX();})
                                                             .deadband(OperatorConstants.DEADBAND)
                                                             .scaleTranslation(0.8)
