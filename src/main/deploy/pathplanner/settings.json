@@ -2,22 +2,8 @@
   "robotWidth": 0.9,
   "robotLength": 0.9,
   "holonomicMode": true,
-  "pathFolders": [
-    "Dominic's Folder",
-    "HPole",
-    "IPole",
-    "JPole",
-    "KPole",
-    "LPole",
-    "GPole",
-    "Other"
-  ],
-  "autoFolders": [
-    "2PieceGHPoles",
-    "4PieceIJKLPoles",
-    "Dominic's Folder",
-    "3PieceIKJPoles"
-  ],
+  "pathFolders": [],
+  "autoFolders": [],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,
