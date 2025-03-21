@@ -86,6 +86,7 @@ public class Bindings {
     } else
     {
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+      driverXbox.a().onTrue(driveBase.zeroGyro);
     }
 
     if (Robot.isSimulation())
