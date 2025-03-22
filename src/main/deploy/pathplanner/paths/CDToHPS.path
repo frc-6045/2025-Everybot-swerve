@@ -3,41 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.127693142361111,
-        "y": 2.919056712962962
+        "x": 3.8269636140046286,
+        "y": 2.8883101851851847
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.811607518957136,
-        "y": 1.7978619888139702
+        "x": 1.7559403935185167,
+        "y": 2.857505425347221
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.4542784288194435,
-        "y": 2.3101240596064803
+        "x": 1.1886436631944433,
+        "y": 7.020224247685185
       },
       "prevControl": {
-        "x": 3.6156557160459437,
-        "y": 2.1191859252084098
-      },
-      "nextControl": {
-        "x": 2.3879081840068497,
-        "y": 3.5718303915288496
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 1.1875372540509248,
-        "y": 7.050796079282407
-      },
-      "prevControl": {
-        "x": 2.287212309875901,
-        "y": 5.02854170501611
+        "x": 2.523207621515269,
+        "y": 5.231597549330532
       },
       "nextControl": null,
       "isLocked": false,
@@ -64,7 +48,7 @@
   "folder": "scoreTwoCoralEFKLSides",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 120.00044217581313
+    "rotation": 59.11644788232112
   },
   "useDefaultConstraints": false
 }

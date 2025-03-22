@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.406493542994072,
-        "y": 1.1347534433139297
+        "x": 6.313331008651918,
+        "y": 0.8874429718871704
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.123442201967593,
-        "y": 2.9131752748842588
+        "x": 3.837853009259258,
+        "y": 2.8856315104166663
       },
       "prevControl": {
-        "x": 5.350013513651252,
-        "y": 2.8075086258319395
+        "x": 3.64819118923611,
+        "y": 2.3538563368055554
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 120.10195297807374
+    "rotation": 59.94911935143625
   },
   "reversed": false,
   "folder": "scoreTwoCoralEFKLSides",

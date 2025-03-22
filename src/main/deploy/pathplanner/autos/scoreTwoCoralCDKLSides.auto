@@ -7,19 +7,37 @@
         {
           "type": "path",
           "data": {
-            "pathName": "StartToEF"
+            "pathName": "StartToCD"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "EFToHPS"
+            "pathName": "CDToHPS"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
           }
         },
         {
           "type": "path",
           "data": {
             "pathName": "HPSToKL"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
           }
         }
       ]

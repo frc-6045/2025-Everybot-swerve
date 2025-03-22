@@ -5,7 +5,6 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.autos.DriveForwardAuto;
 import frc.robot.commands.AlgieInCommand;
 import frc.robot.commands.AlgieOutCommand;
 import frc.robot.commands.ArmDownCommand;
@@ -57,9 +56,6 @@ public class RobotContainer {
   "swerve/neo"));
   public final ClimberSubsystem m_climber = new ClimberSubsystem();
 
-  //public final SimpleCoralAuto m_simpleCoralAuto = new SimpleCoralAuto(m_drive, m_roller, m_arm);
-  public final DriveForwardAuto m_driveForwardAuto = new DriveForwardAuto(m_drive);
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Set up command bindings
@@ -69,7 +65,6 @@ public class RobotContainer {
     // add additional auto modes you can add additional lines here with
     // autoChooser.addOption
     //m_chooser.addOption("Coral Auto", m_simpleCoralAuto);
-    m_chooser.setDefaultOption("Drive Forward Auto", m_driveForwardAuto);
     SmartDashboard.putData(m_chooser);
   }
 
