@@ -17,6 +17,7 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.Autos;
 
 import java.io.File;
 
@@ -49,6 +50,7 @@ public class RobotContainer {
 
   // The autonomous chooser
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  private Autos m_autos;
 
   public final RollerSubsystem m_roller = new RollerSubsystem();
   public final ArmSubsystem m_arm = new ArmSubsystem();
@@ -58,6 +60,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_autos = new Autos(m_roller);
     // Set up command bindings
     configureBindings();
     Bindings.initBindings(m_drive, m_driverController);
@@ -162,6 +165,6 @@ public class RobotContainer {
    */
     public Command getAutonomousCommand() {
     // The selected command will be run in autonomous
-    return m_chooser.getSelected();
+    return m_autos.getAutonomousCommand();
   }
 }

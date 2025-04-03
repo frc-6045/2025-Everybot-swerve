@@ -46,7 +46,7 @@ public class DriveForwardAuto extends Command {
     if(timer.get() < drive_seconds)
     {
         m_drive.driveToDistanceCommand(1, 0.5);
-    }
+    }                                               
   }
 
   // Runs each time the command ends via isFinished or being interrupted.

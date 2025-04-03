@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.CoralOutTimedCommand;
 import frc.robot.subsystems.RollerSubsystem;
 
-
-
 public class Autos {
     private final RollerSubsystem m_roller;
     private SendableChooser<Command> autoChooser;
@@ -21,7 +19,9 @@ public class Autos {
 
         // Autos //
         autoChooser = new SendableChooser<Command>();
-        autoChooser.addOption("select this auto!", AutoBuilder.buildAuto("scoreTwoCoralEFKLSides"));
+        autoChooser.addOption("Score Two Coral", AutoBuilder.buildAuto("scoreTwoCoralEFKLSides"));
+        autoChooser.addOption("Drive Forward", AutoBuilder.buildAuto("DriveForward"));
+
         SmartDashboard.putData("autos", autoChooser);
     }
 
