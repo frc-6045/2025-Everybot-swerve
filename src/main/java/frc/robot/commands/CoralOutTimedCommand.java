@@ -35,7 +35,7 @@ public class CoralOutTimedCommand extends Command {
   @Override
   public void execute() {
     if (timer.get() < time) {
-    m_roller.runRoller(RollerConstants.ROLLER_CORAL_OUT);
+    m_roller.runRoller(-(RollerConstants.ROLLER_CORAL_OUT));
   }}
 
   // Called once the command ends or is interrupted. Ensures the roller
