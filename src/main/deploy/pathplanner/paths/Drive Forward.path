@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.082168982211485,
-        "y": 3.9845161230838215
+        "x": 5.808494118099776,
+        "y": 4.018084745325147
       },
       "isLocked": false,
       "linkedName": null
@@ -20,12 +20,12 @@
         "y": 3.995085227272727
       },
       "prevControl": {
-        "x": 6.503902571768383,
-        "y": 3.991652690308302
+        "x": 6.965654660567978,
+        "y": 4.024662572435144
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "driveForwardEndTwo"
     }
   ],
   "rotationTargets": [],

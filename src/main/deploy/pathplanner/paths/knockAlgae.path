@@ -1,0 +1,102 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 5.793494318181818,
+        "y": 3.995085227272727
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.813763066196329,
+        "y": 3.7459082262194108
+      },
+      "isLocked": false,
+      "linkedName": "driveForwardEndTwo"
+    },
+    {
+      "anchor": {
+        "x": 6.132323232323233,
+        "y": 5.519128787878787
+      },
+      "prevControl": {
+        "x": 6.416323757035087,
+        "y": 5.058474260580344
+      },
+      "nextControl": {
+        "x": 5.55020946925311,
+        "y": 6.4633289460758645
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.2230429292929292,
+        "y": 5.874873737373736
+      },
+      "prevControl": {
+        "x": 1.7790245941238907,
+        "y": 6.44244894325152
+      },
+      "nextControl": {
+        "x": 0.7617031748059229,
+        "y": 5.4039139509351335
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.2230429292929292,
+        "y": 3.995085227272727
+      },
+      "prevControl": {
+        "x": 1.1149505241029294,
+        "y": 4.7954226577406995
+      },
+      "nextControl": {
+        "x": 1.2565037671287982,
+        "y": 3.74733460198326
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.7007575757575757,
+        "y": 2.1649621212121213
+      },
+      "prevControl": {
+        "x": 1.560395957729704,
+        "y": 2.659665046349256
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "reversed": false,
+  "folder": "scoreOneCoralAndDropAlgae",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "useDefaultConstraints": true
+}

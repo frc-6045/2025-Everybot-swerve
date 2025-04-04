@@ -23,8 +23,9 @@ public class CoralOutTimedCommand extends Command {
    */
   public CoralOutTimedCommand(RollerSubsystem roller, double time) {
     m_roller = roller;
-    addRequirements(roller);
     this.time = time;
+
+    addRequirements(roller);
   }
 
   // Called when the command is initially scheduled.
@@ -34,9 +35,10 @@ public class CoralOutTimedCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (timer.get() < time) {
-    m_roller.runRoller(-(RollerConstants.ROLLER_CORAL_OUT));
-  }}
+    if (timer.get() <= time) {
+      m_roller.runRoller(-(RollerConstants.ROLLER_CORAL_OUT));
+    }
+  }
 
   // Called once the command ends or is interrupted. Ensures the roller
   // is not running after we let go of the button. 
@@ -48,9 +50,10 @@ public class CoralOutTimedCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (timer.get()>time) {
+    if (timer.get() > time) {
       return true;
-  }
+    }
+    
     return false;
   }
 }
