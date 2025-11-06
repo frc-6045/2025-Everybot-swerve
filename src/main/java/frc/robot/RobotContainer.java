@@ -13,8 +13,10 @@ import frc.robot.commands.ClimberDownCommand;
 import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.CoralOutCommand;
 import frc.robot.commands.CoralStackCommand;
+import frc.robot.commands.DriveToGamePieceCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.Autos;
@@ -57,6 +59,7 @@ public class RobotContainer {
   public final SwerveSubsystem m_drive = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
   "swerve/neo"));
   public final ClimberSubsystem m_climber = new ClimberSubsystem();
+  public final LimelightSubsystem m_limelight = new LimelightSubsystem();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -121,7 +124,13 @@ public class RobotContainer {
      */
     m_operatorController.pov(0).whileTrue(new ClimberUpCommand(m_climber));
     m_operatorController.pov(180).whileTrue(new ClimberDownCommand(m_climber));
-  
+
+    /**
+     * Vision-based game piece pickup
+     * B button: Auto-drive to detected game piece using Limelight
+     */
+    m_driverController.b().whileTrue(new DriveToGamePieceCommand(m_drive, m_limelight));
+
 
 
 

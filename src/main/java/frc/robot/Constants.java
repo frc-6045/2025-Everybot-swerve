@@ -66,4 +66,32 @@ public final class Constants {
     public static final double RIGHT_X_DEADBAND = 0.1;
     public static final double TURN_CONSTANT    = 6;
   }
+
+  public static final class VisionConstants {
+    // Limelight network table name
+    public static final String LIMELIGHT_NAME = "limelight";
+
+    // Camera mounting configuration (adjust based on your robot)
+    public static final double CAMERA_HEIGHT_METERS = 0.5;      // Height from ground to camera lens
+    public static final double CAMERA_PITCH_DEGREES = 0.0;      // Camera tilt angle (0 = horizontal)
+
+    // Game piece physical properties
+    public static final double CORAL_HEIGHT_METERS = 0.1;       // Height of coral game piece
+    public static final double ALGAE_HEIGHT_METERS = 0.1;       // Height of algae game piece
+
+    // Vision pipeline indices
+    public static final int CORAL_PIPELINE = 0;                 // Pipeline for detecting coral
+    public static final int ALGAE_PIPELINE = 1;                 // Pipeline for detecting algae
+
+    // Vision alignment tolerances
+    public static final double ALIGNMENT_TOLERANCE_DEGREES = 2.0;  // Acceptable horizontal misalignment
+    public static final double DISTANCE_TOLERANCE_METERS = 0.1;    // Acceptable distance error
+
+    // Vision-based auto drive speeds
+    public static final double AUTO_DRIVE_SPEED = 0.3;          // Speed when driving to game piece
+    public static final double AUTO_TURN_SPEED = 0.2;           // Speed when turning to game piece
+
+    // Vision update timeout
+    public static final double VISION_TIMEOUT_SECONDS = 0.5;    // Max age of vision data
+  }
 }
