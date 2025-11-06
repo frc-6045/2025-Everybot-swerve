@@ -136,3 +136,7 @@ echo "For VSCode warnings (yellow triangles):"
 echo "  - These are usually safe to ignore if build succeeds"
 echo "  - Check Problems panel: View → Problems (Ctrl+Shift+M)"
 echo ""
+echo "========================================="
+echo ""
+echo "Press Enter to exit..."
+read -r
