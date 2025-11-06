@@ -1,11 +1,10 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.LimelightHelpers;
+import frc.robot.Constants.VisionConstants;
 
 /**
  * Subsystem for interfacing with the Limelight camera to detect and track game pieces.
@@ -17,43 +16,30 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  * - 3D position estimation via camera pose
  */
 public class LimelightSubsystem extends SubsystemBase {
-    private final NetworkTable limelightTable;
-    private final NetworkTableEntry tvEntry;      // Valid target (0 or 1)
-    private final NetworkTableEntry txEntry;      // Horizontal offset (-27 to 27 degrees)
-    private final NetworkTableEntry tyEntry;      // Vertical offset (-20.5 to 20.5 degrees)
-    private final NetworkTableEntry taEntry;      // Target area (0% to 100%)
-    private final NetworkTableEntry pipelineEntry; // Current pipeline index
-    private final NetworkTableEntry camtranEntry;  // 3D camera transform (6-element array)
+    private final String limelightName;
 
     // Cached values
     private GamePieceData lastDetection;
     private double lastUpdateTime;
 
     // Camera calibration constants (adjust based on your Limelight mounting)
-    private static final double CAMERA_HEIGHT_METERS = 0.5;  // Height of camera from ground
-    private static final double CAMERA_ANGLE_DEGREES = 0.0;  // Tilt angle of camera
+    private static final double CAMERA_HEIGHT_METERS = VisionConstants.CAMERA_HEIGHT_METERS;
+    private static final double CAMERA_ANGLE_DEGREES = VisionConstants.CAMERA_PITCH_DEGREES;
 
     // Game piece constants (adjust for your game pieces)
-    private static final double GAME_PIECE_HEIGHT_METERS = 0.1;  // Height of game piece
-
-    // Pipeline constants
-    public static final int CORAL_PIPELINE = 0;
-    public static final int ALGAE_PIPELINE = 1;
+    private static final double GAME_PIECE_HEIGHT_METERS = VisionConstants.CORAL_HEIGHT_METERS;
 
     public LimelightSubsystem() {
-        limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
-        tvEntry = limelightTable.getEntry("tv");
-        txEntry = limelightTable.getEntry("tx");
-        tyEntry = limelightTable.getEntry("ty");
-        taEntry = limelightTable.getEntry("ta");
-        pipelineEntry = limelightTable.getEntry("pipeline");
-        camtranEntry = limelightTable.getEntry("camtran");
+        this(VisionConstants.LIMELIGHT_NAME);
+    }
 
+    public LimelightSubsystem(String limelightName) {
+        this.limelightName = limelightName;
         lastDetection = GamePieceData.noDetection();
         lastUpdateTime = Timer.getFPGATimestamp();
 
         // Set LED mode to pipeline control
-        setLEDMode(LEDMode.PIPELINE);
+        LimelightHelpers.setLEDMode_PipelineControl(limelightName);
     }
 
     @Override
@@ -69,7 +55,7 @@ public class LimelightSubsystem extends SubsystemBase {
         double currentTime = Timer.getFPGATimestamp();
 
         // Check if target is detected
-        boolean hasTarget = tvEntry.getDouble(0.0) == 1.0;
+        boolean hasTarget = LimelightHelpers.getTV(limelightName);
 
         if (!hasTarget) {
             lastDetection = GamePieceData.noDetection();
@@ -78,16 +64,16 @@ public class LimelightSubsystem extends SubsystemBase {
         }
 
         // Get basic target data
-        double tx = txEntry.getDouble(0.0);  // Horizontal offset
-        double ty = tyEntry.getDouble(0.0);  // Vertical offset
-        double ta = taEntry.getDouble(0.0);  // Target area
+        double tx = LimelightHelpers.getTX(limelightName);  // Horizontal offset
+        double ty = LimelightHelpers.getTY(limelightName);  // Vertical offset
+        double ta = LimelightHelpers.getTA(limelightName);  // Target area
 
-        // Try to get 3D position from camtran if available
-        double[] camtran = camtranEntry.getDoubleArray(new double[6]);
+        // Try to get 3D position from camera transform
+        double[] camtran = LimelightHelpers.getLimelightNTDoubleArray(limelightName, "camtran");
 
         double x, y, z, theta;
 
-        if (camtran.length == 6) {
+        if (camtran != null && camtran.length == 6) {
             // Use 3D camera pose estimation
             // camtran format: [x, y, z, pitch, yaw, roll]
             x = camtran[0];
@@ -154,7 +140,7 @@ public class LimelightSubsystem extends SubsystemBase {
      * @return horizontal offset (-27 to 27 degrees), 0 if no target
      */
     public double getHorizontalOffset() {
-        return hasTarget() ? txEntry.getDouble(0.0) : 0.0;
+        return hasTarget() ? LimelightHelpers.getTX(limelightName) : 0.0;
     }
 
     /**
@@ -162,7 +148,7 @@ public class LimelightSubsystem extends SubsystemBase {
      * @return vertical offset (-20.5 to 20.5 degrees), 0 if no target
      */
     public double getVerticalOffset() {
-        return hasTarget() ? tyEntry.getDouble(0.0) : 0.0;
+        return hasTarget() ? LimelightHelpers.getTY(limelightName) : 0.0;
     }
 
     /**
@@ -170,21 +156,21 @@ public class LimelightSubsystem extends SubsystemBase {
      * @param pipeline Pipeline index (0-9)
      */
     public void setPipeline(int pipeline) {
-        pipelineEntry.setNumber(pipeline);
+        LimelightHelpers.setPipelineIndex(limelightName, pipeline);
     }
 
     /**
      * Sets the pipeline for detecting coral game pieces
      */
     public void setCoralPipeline() {
-        setPipeline(CORAL_PIPELINE);
+        setPipeline(VisionConstants.CORAL_PIPELINE);
     }
 
     /**
      * Sets the pipeline for detecting algae game pieces
      */
     public void setAlgaePipeline() {
-        setPipeline(ALGAE_PIPELINE);
+        setPipeline(VisionConstants.ALGAE_PIPELINE);
     }
 
     /**
@@ -192,23 +178,35 @@ public class LimelightSubsystem extends SubsystemBase {
      * @return Current pipeline (0-9)
      */
     public int getCurrentPipeline() {
-        return (int) pipelineEntry.getDouble(0.0);
+        return (int) LimelightHelpers.getCurrentPipelineIndex(limelightName);
     }
 
     /**
-     * Sets the Limelight LED mode
-     * @param mode LED mode to set
+     * Sets the Limelight LED mode to pipeline control
      */
-    public void setLEDMode(LEDMode mode) {
-        limelightTable.getEntry("ledMode").setNumber(mode.value);
+    public void setLEDModePipeline() {
+        LimelightHelpers.setLEDMode_PipelineControl(limelightName);
     }
 
     /**
-     * Sets the camera mode
-     * @param mode Camera mode to set
+     * Forces LEDs off
      */
-    public void setCamMode(CamMode mode) {
-        limelightTable.getEntry("camMode").setNumber(mode.value);
+    public void setLEDModeOff() {
+        LimelightHelpers.setLEDMode_ForceOff(limelightName);
+    }
+
+    /**
+     * Forces LEDs on
+     */
+    public void setLEDModeOn() {
+        LimelightHelpers.setLEDMode_ForceOn(limelightName);
+    }
+
+    /**
+     * Forces LEDs to blink
+     */
+    public void setLEDModeBlink() {
+        LimelightHelpers.setLEDMode_ForceBlink(limelightName);
     }
 
     /**
@@ -242,35 +240,5 @@ public class LimelightSubsystem extends SubsystemBase {
      */
     public double getTimeSinceLastUpdate() {
         return Timer.getFPGATimestamp() - lastUpdateTime;
-    }
-
-    /**
-     * LED mode options for Limelight
-     */
-    public enum LEDMode {
-        PIPELINE(0),    // Use LED mode from current pipeline
-        OFF(1),         // Force LEDs off
-        BLINK(2),       // Force LEDs to blink
-        ON(3);          // Force LEDs on
-
-        public final int value;
-
-        LEDMode(int value) {
-            this.value = value;
-        }
-    }
-
-    /**
-     * Camera mode options for Limelight
-     */
-    public enum CamMode {
-        VISION(0),      // Vision processing mode
-        DRIVER(1);      // Driver camera mode (no processing)
-
-        public final int value;
-
-        CamMode(int value) {
-            this.value = value;
-        }
     }
 }
