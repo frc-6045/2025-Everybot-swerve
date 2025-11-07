@@ -13,7 +13,7 @@ import frc.robot.commands.ClimberDownCommand;
 import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.CoralOutCommand;
 import frc.robot.commands.CoralStackCommand;
-import frc.robot.commands.DriveToGamePieceCommand;
+// import frc.robot.commands.DriveToGamePieceCommand; // Uncomment when enabling auto-drive
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -126,10 +126,12 @@ public class RobotContainer {
     m_operatorController.pov(180).whileTrue(new ClimberDownCommand(m_climber));
 
     /**
-     * Vision-based game piece pickup
-     * B button: Auto-drive to detected game piece using Limelight
+     * Vision-based algae pickup
+     * B button: Auto-drive to detected algae using Limelight
+     *
+     * UNCOMMENT THE LINE BELOW TO ENABLE AUTO-DRIVE (disabled for testing)
      */
-    m_driverController.b().whileTrue(new DriveToGamePieceCommand(m_drive, m_limelight));
+    // m_driverController.b().whileTrue(new DriveToGamePieceCommand(m_drive, m_limelight));
 
 
 
