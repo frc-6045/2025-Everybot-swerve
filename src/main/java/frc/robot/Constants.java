@@ -78,6 +78,16 @@ public final class Constants {
     // Algae game piece physical properties
     public static final double ALGAE_HEIGHT_METERS = 0.1;       // Height of algae game piece
 
+    // Tuned HSV values for algae detection (OpenCV format: H=0-180, S/V=0-255)
+    // These values were tuned using Limelight eyedropper tool on actual algae
+    // NOTE: Limelight web interface H/S sliders don't work manually - use eyedropper tool instead
+    public static final int ALGAE_HUE_MIN = 0;                  // Hue minimum (cyan range start)
+    public static final int ALGAE_HUE_MAX = 139;                // Hue maximum (cyan range end)
+    public static final int ALGAE_SATURATION_MIN = 184;         // Saturation minimum (vivid colors)
+    public static final int ALGAE_SATURATION_MAX = 228;         // Saturation maximum
+    public static final int ALGAE_VALUE_MIN = 184;              // Value/brightness minimum
+    public static final int ALGAE_VALUE_MAX = 228;              // Value/brightness maximum
+
     // Vision alignment tolerances
     public static final double ALIGNMENT_TOLERANCE_DEGREES = 2.0;  // Acceptable horizontal misalignment
     public static final double DISTANCE_TOLERANCE_METERS = 0.1;    // Acceptable distance error
