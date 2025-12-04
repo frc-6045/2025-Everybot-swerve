@@ -56,6 +56,32 @@ public final class Constants {
     public static final double CLIMBER_SPEED_UP = 0.5;
   }
 
+  public static final class VisionConstants {
+    // Limelight name in NetworkTables (change if you renamed your Limelight)
+    public static final String LIMELIGHT_NAME = "limelight";
+
+    // Limelight pipeline indices
+    public static final int ALGAE_PIPELINE = 0;  // Pipeline for algae detection
+    public static final int CORAL_PIPELINE = 1;  // Pipeline for coral detection (if needed)
+
+    // Vision tracking constants
+    public static final double ROTATION_KP = 0.04;  // Proportional gain for rotation tracking
+    public static final double MIN_ROTATION_COMMAND = 0.05;  // Minimum command to overcome friction
+    public static final double TRACKING_DEADBAND = 1.0;  // Deadband in degrees for "centered"
+
+    // Distance estimation constants (MUST BE CALIBRATED!)
+    public static final double DISTANCE_CALIBRATION_CONSTANT = 48.0;  // k in distance = k / sqrt(area)
+
+    // Target height for distance calculation (if using angle-based distance)
+    public static final double TARGET_HEIGHT_INCHES = 14.0;  // Height of algae/coral from ground
+    public static final double CAMERA_HEIGHT_INCHES = 8.0;   // Height of camera from ground
+    public static final double CAMERA_MOUNT_ANGLE_DEGREES = 15.0;  // Camera tilt angle
+
+    // Detection settings
+    public static final float CONFIDENCE_THRESHOLD = 0.5f;
+    public static final int MAX_DETECTIONS = 10;
+  }
+
   public static final class OperatorConstants {
     public static final int DRIVER_CONTROLLER_PORT = 0;
     public static final int OPERATOR_CONTROLLER_PORT = 1;

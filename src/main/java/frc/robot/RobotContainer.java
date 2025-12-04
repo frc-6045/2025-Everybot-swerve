@@ -13,8 +13,11 @@ import frc.robot.commands.ClimberDownCommand;
 import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.CoralOutCommand;
 import frc.robot.commands.CoralStackCommand;
+import frc.robot.commands.TrackTargetCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.HybridVisionSubsystem;
+import frc.robot.subsystems.HybridVisionSubsystem.VisionMode;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.Autos;
@@ -57,6 +60,7 @@ public class RobotContainer {
   public final SwerveSubsystem m_drive = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
   "swerve/neo"));
   public final ClimberSubsystem m_climber = new ClimberSubsystem();
+  public final HybridVisionSubsystem m_vision = new HybridVisionSubsystem();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -121,8 +125,28 @@ public class RobotContainer {
      */
     m_operatorController.pov(0).whileTrue(new ClimberUpCommand(m_climber));
     m_operatorController.pov(180).whileTrue(new ClimberDownCommand(m_climber));
-  
 
+    /**
+     * VISION TRACKING - Uses hybrid vision system (Limelight + Coral)
+     * Hold B button to automatically track and center on algae
+     */
+    m_driverController.b().whileTrue(new TrackTargetCommand(m_vision, m_drive, "algae"));
+
+    /**
+     * VISION MODE SWITCHING - Change how the vision system works
+     * D-Pad Left: Limelight only (fastest)
+     * D-Pad Right: Coral only (most accurate classification)
+     * D-Pad Up: Fusion mode (uses both - DEFAULT)
+     */
+    m_driverController.pov(270).onTrue(
+      Commands.runOnce(() -> m_vision.setVisionMode(VisionMode.LIMELIGHT_ONLY))
+    );
+    m_driverController.pov(90).onTrue(
+      Commands.runOnce(() -> m_vision.setVisionMode(VisionMode.CORAL_ONLY))
+    );
+    m_driverController.pov(0).onTrue(
+      Commands.runOnce(() -> m_vision.setVisionMode(VisionMode.FUSION))
+    );
 
 
 

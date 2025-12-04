@@ -1,0 +1,15 @@
+# Python dependencies for Coral Vision coprocessor
+# Install with: pip3 install -r requirements.txt
+
+# TensorFlow Lite Runtime (for Raspberry Pi)
+# NOTE: Install from https://www.tensorflow.org/lite/guide/python
+# Or use: pip3 install tflite-runtime
+
+# OpenCV for image processing (headless version for Pi)
+opencv-python-headless==4.8.1.78
+
+# NetworkTables for FRC communication
+pynetworktables==2021.0.0
+
+# NumPy for array operations
+numpy>=1.19.0
