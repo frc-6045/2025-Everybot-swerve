@@ -53,7 +53,7 @@ public class HybridVisionSubsystem extends SubsystemBase {
     public HybridVisionSubsystem() {
         limelight = new LimelightVisionSubsystem();
         coral = new CoralVisionSubsystem();
-        currentMode = VisionMode.FUSION;  // Default mode - uses both systems for best accuracy
+        currentMode = VisionMode.LIMELIGHT_ONLY;  // Default mode - Limelight only (no Coral coprocessor)
 
         SmartDashboard.putString("HybridVision/Mode", currentMode.toString());
     }

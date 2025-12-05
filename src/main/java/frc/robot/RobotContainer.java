@@ -134,9 +134,9 @@ public class RobotContainer {
 
     /**
      * VISION MODE SWITCHING - Change how the vision system works
-     * D-Pad Left: Limelight only (fastest)
+     * D-Pad Left: Limelight only (fastest - DEFAULT)
      * D-Pad Right: Coral only (most accurate classification)
-     * D-Pad Up: Fusion mode (uses both - DEFAULT)
+     * D-Pad Up: Fusion mode (uses both)
      */
     m_driverController.pov(270).onTrue(
       Commands.runOnce(() -> m_vision.setVisionMode(VisionMode.LIMELIGHT_ONLY))
