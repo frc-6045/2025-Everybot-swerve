@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.HybridVisionSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
@@ -45,6 +46,7 @@ public class TrackTargetCommand extends Command {
   public void initialize() {
     // Turn on Limelight LEDs (if using Limelight mode)
     m_vision.getLimelight().setLEDs(true);
+    DataLogManager.log("TrackTargetCommand initialized - tracking: " + m_targetLabel);
   }
 
   @Override
@@ -52,6 +54,7 @@ public class TrackTargetCommand extends Command {
     // Check if hybrid vision system has a valid target
     if (!m_vision.hasTarget()) {
       // No target found - stop rotating
+      DataLogManager.log("TrackTargetCommand: No target found");
       m_drive.drive(new Translation2d(0, 0), 0, false);
       return;
     }
@@ -59,10 +62,12 @@ public class TrackTargetCommand extends Command {
     // Get horizontal offset from hybrid vision system (in degrees)
     // This automatically uses the configured vision mode (Limelight/Coral/Both)
     double tx = m_vision.getHorizontalOffset();
+    DataLogManager.log(String.format("TrackTargetCommand: Target found - Horizontal offset: %.2f degrees", tx));
 
     // Apply deadband
     if (Math.abs(tx) < DEADBAND) {
       // Target is centered - stop
+      DataLogManager.log("TrackTargetCommand: Target centered (within deadband)");
       m_drive.drive(new Translation2d(0, 0), 0, false);
       return;
     }
@@ -78,6 +83,8 @@ public class TrackTargetCommand extends Command {
     // Clamp rotation speed to safe range
     rotationSpeed = Math.max(-0.5, Math.min(0.5, rotationSpeed));
 
+    DataLogManager.log(String.format("TrackTargetCommand: Rotating at speed: %.3f", rotationSpeed));
+
     // Drive with rotation only (no translation)
     m_drive.drive(new Translation2d(0, 0), rotationSpeed, false);
   }
@@ -86,6 +93,8 @@ public class TrackTargetCommand extends Command {
   public void end(boolean interrupted) {
     // Stop the drive when command ends
     m_drive.drive(new Translation2d(0, 0), 0, false);
+
+    DataLogManager.log("TrackTargetCommand ended - Interrupted: " + interrupted);
 
     // Optionally turn off LEDs
     // m_vision.setLEDs(false);
