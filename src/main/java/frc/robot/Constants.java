@@ -36,6 +36,28 @@ public final class Constants {
     public static final double ROLLER_ALGAE_IN = -0.4;
     public static final double ROLLER_ALGAE_OUT = 0.4;
     public static final double ROLLER_CORAL_STACK = -1;
+
+    // ⚠️ CALIBRATION REQUIRED FOR ALGAE PICKUP DETECTION! ⚠️
+    // HOW TO CALIBRATE CURRENT DROP DETECTION:
+    // 1. Deploy code and open SmartDashboard/Shuffleboard
+    // 2. Run intake motor at ROLLER_ALGAE_IN speed (press right bumper)
+    // 3. Watch "Roller/Motor Current (Amps)" while running freely (no algae)
+    // 4. Note the baseline current (typically 10-30 amps depending on mechanism)
+    // 5. Drive robot to pick up algae and watch current change
+    // 6. When algae is grabbed, current should DROP significantly
+    // 7. Calculate drop amount = (baseline - current when algae grabbed)
+    // 8. Update ROLLER_BASELINE_CURRENT and ROLLER_CURRENT_DROP_THRESHOLD below
+    // 9. Test by watching "Roller/CALIBRATE: Would Trigger Pickup" on dashboard
+    //
+    // Dashboard Values to Watch:
+    // - "Roller/Motor Current (Amps)" = real-time current draw
+    // - "Roller/Motor Speed" = current motor speed
+    // - "Roller/CALIBRATE: Would Trigger Pickup" = true when detection triggers
+    //
+    // These values are used in AlgaePickupSequenceCommand.java line 68-70
+
+    public static final double ROLLER_BASELINE_CURRENT = 20.0;  // ⚠️ MEASURE THIS! Normal current when running
+    public static final double ROLLER_CURRENT_DROP_THRESHOLD = 5.0;  // ⚠️ TUNE THIS! How much current must drop
   }
 
   public static final class ArmConstants {
@@ -46,6 +68,31 @@ public final class Constants {
     public static final double ARM_SPEED_UP = 0.2;
     public static final double ARM_HOLD_DOWN = -0.05;
     public static final double ARM_HOLD_UP = 0.05;
+
+    // REV Through Bore Encoder (quadrature mode - uses 2 DIO ports)
+    // Wire: Green (A) to DIO 0, Yellow (B) to DIO 1, Red (5V), Black (GND)
+    public static final int ARM_ENCODER_CHANNEL_A = 0;  // DIO port for A channel - CHANGE IF NEEDED!
+    public static final int ARM_ENCODER_CHANNEL_B = 1;  // DIO port for B channel - CHANGE IF NEEDED!
+
+    // ⚠️ CALIBRATION REQUIRED! ⚠️
+    // HOW TO CALIBRATE ARM POSITIONS:
+    // 1. Deploy code and open SmartDashboard/Shuffleboard
+    // 2. Manually move arm to desired "safe/home" position
+    // 3. Press button bound to resetEncoder() (or add one in RobotContainer)
+    // 4. Move arm to intake position (where it picks up algae from ground)
+    // 5. Read "Arm/Encoder Position (rotations)" from dashboard
+    // 6. Update ARM_INTAKE_POSITION below with that value
+    // 7. Repeat for any other positions you need
+    //
+    // Dashboard Values to Watch:
+    // - "Arm/Encoder Position (rotations)" = current position
+    // - "Arm/Encoder Raw Count" = raw encoder pulses
+    // - "Arm/At Intake Position" = true when at intake position
+    // - "Arm/At Safe Position" = true when at safe position
+
+    public static final double ARM_INTAKE_POSITION = 5.0;  // ⚠️ MEASURE THIS! Position for picking up algae
+    public static final double ARM_SAFE_POSITION = 0.0;    // Safe/stowed position (should be 0 after reset)
+    public static final double ARM_POSITION_TOLERANCE = 0.5;  // Acceptable error in rotations
   }
 
   public static final class ClimberConstants {
