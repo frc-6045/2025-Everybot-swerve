@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AlgaeIntakeCommand;
 import frc.robot.commands.AlgieInCommand;
 import frc.robot.commands.AlgieOutCommand;
 import frc.robot.commands.ArmDownCommand;
@@ -90,8 +91,10 @@ public class RobotContainer {
      */
     m_driverController.rightBumper().whileTrue(new AlgieInCommand(m_roller));
     
-    // Here we use a trigger as a button when it is pushed past a certain threshold
-    m_driverController.rightTrigger(.2).whileTrue(new AlgieOutCommand(m_roller));
+    // Auto-align and intake algae when right trigger is held
+    m_driverController.rightTrigger(.2).whileTrue(
+        new AlgaeIntakeCommand(m_drive, m_arm, m_roller, () -> -m_driverController.getLeftY())
+    );
 
     /**
      * The arm will be passively held up or down after this is used,
@@ -131,9 +134,11 @@ public class RobotContainer {
      * written in a more compact manner but are left verbose so the intent is clear.
      */
     m_godController.rightBumper().whileTrue(new AlgieInCommand(m_roller));
-    
-    // Here we use a trigger as a button when it is pushed past a certain threshold
-    m_godController.rightTrigger(.2).whileTrue(new AlgieOutCommand(m_roller));
+
+    // Auto-align and intake algae when right trigger is held
+    m_godController.rightTrigger(.2).whileTrue(
+        new AlgaeIntakeCommand(m_drive, m_arm, m_roller, () -> -m_godController.getLeftY())
+    );
 
     /**
      * The arm will be passively held up or down after this is used,

@@ -36,6 +36,8 @@ public final class Constants {
     public static final double ROLLER_ALGAE_IN = -0.4;
     public static final double ROLLER_ALGAE_OUT = 0.4;
     public static final double ROLLER_CORAL_STACK = -1;
+    public static final double ALGAE_DETECTION_CURRENT_THRESHOLD = 35.0; // amps
+    public static final double ROLLER_ALGAE_INTAKE_SPEED = -0.5;
   }
 
   public static final class ArmConstants {
@@ -46,6 +48,13 @@ public final class Constants {
     public static final double ARM_SPEED_UP = 0.2;
     public static final double ARM_HOLD_DOWN = -0.05;
     public static final double ARM_HOLD_UP = 0.05;
+    // Position control constants
+    public static final double ARM_ALGAE_INTAKE_ANGLE = 0.25; // rotations - tune this value
+    public static final double ARM_POSITION_TOLERANCE = 0.02; // rotations
+    public static final double ARM_POSITION_KP = 2.0; // tune
+    public static final double ARM_POSITION_KI = 0.0;
+    public static final double ARM_POSITION_KD = 0.0;
+    public static final double ARM_MAX_OUTPUT = 0.5;
   }
 
   public static final class ClimberConstants {
@@ -65,5 +74,17 @@ public final class Constants {
     public static final double LEFT_Y_DEADBAND = 0.1;
     public static final double RIGHT_X_DEADBAND = 0.1;
     public static final double TURN_CONSTANT    = 6;
+  }
+
+  public static final class LimelightConstants {
+    public static final String LIMELIGHT_NAME = "limelight";
+    public static final int ALGAE_PIPELINE = 0;
+    public static final double STRAFE_KP = 0.1; // tune
+    public static final double STRAFE_KI = 0.0;
+    public static final double STRAFE_KD = 0.0;
+    public static final double ROTATION_KP = 0.05; // tune
+    public static final double ROTATION_KI = 0.0;
+    public static final double ROTATION_KD = 0.0;
+    public static final double TX_TOLERANCE = 2.0; // degrees
   }
 }

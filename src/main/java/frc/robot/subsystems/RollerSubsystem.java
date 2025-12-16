@@ -7,6 +7,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RollerConstants;
 
@@ -39,6 +40,8 @@ public class RollerSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+        SmartDashboard.putNumber("Roller/Current", getOutputCurrent());
+        SmartDashboard.putBoolean("Roller/HasGamePiece", hasGamePiece());
     }
 
     /**
@@ -49,6 +52,29 @@ public class RollerSubsystem extends SubsystemBase {
      */
     public void runRoller(double speed){
         rollerMotor.set(speed);
+    }
+
+    /**
+     * Gets the output current of the roller motor.
+     * @return Current in amps
+     */
+    public double getOutputCurrent() {
+        return rollerMotor.getOutputCurrent();
+    }
+
+    /**
+     * Checks if a game piece has been detected based on current spike.
+     * @return true if current exceeds threshold
+     */
+    public boolean hasGamePiece() {
+        return getOutputCurrent() > RollerConstants.ALGAE_DETECTION_CURRENT_THRESHOLD;
+    }
+
+    /**
+     * Stops the roller motor.
+     */
+    public void stop() {
+        rollerMotor.set(0);
     }
 
 }
