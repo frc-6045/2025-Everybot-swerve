@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AlgaePickupSequenceCommand;
 import frc.robot.commands.AlgieInCommand;
 import frc.robot.commands.AlgieOutCommand;
 import frc.robot.commands.ArmDownCommand;
@@ -109,11 +110,18 @@ public class RobotContainer {
 //zero gyro
     m_driverController.a().onTrue((Commands.runOnce(m_drive::zeroGyro)));
 
-
+    /**
+     * RESET ARM ENCODER - Use for calibration
+     * Press BACK button to zero the arm encoder at current position
+     * This is essential for setting up arm positions
+     */
+    m_driverController.back().onTrue(
+      Commands.runOnce(() -> m_arm.resetEncoder(), m_arm)
+    );
 
     /**
      * Used to score coral, the stack command is for when there is already coral
-     * in L1 where you are trying to score. The numbers may need to be tuned, 
+     * in L1 where you are trying to score. The numbers may need to be tuned,
      * make sure the rollers do not wear on the plastic basket.
      */
     m_driverController.x().whileTrue(new CoralOutCommand(m_roller));
@@ -131,6 +139,20 @@ public class RobotContainer {
      * Hold B button to automatically track and center on algae
      */
     m_driverController.b().whileTrue(new TrackTargetCommand(m_vision, m_drive, "algae"));
+
+    /**
+     * AUTOMATED ALGAE PICKUP SEQUENCE
+     * Press left bumper to start automated pickup:
+     * 1. Moves arm to intake position
+     * 2. Starts intake roller
+     * 3. Aligns robot with detected algae
+     * 4. Driver drives forward manually
+     * 5. Stops intake when current drops (algae picked up)
+     * 6. Retracts arm to safe position
+     */
+    m_driverController.leftBumper().onTrue(
+      new AlgaePickupSequenceCommand(m_arm, m_roller, m_vision, m_drive)
+    );
 
     /**
      * VISION MODE SWITCHING - Change how the vision system works
