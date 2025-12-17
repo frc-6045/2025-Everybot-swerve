@@ -25,9 +25,15 @@ import java.util.function.DoubleSupplier;
  * - Driver retains forward/backward control
  * - Arm moves to intake position
  * - Rollers run until current spike detected (game piece acquired)
- * - Command ends automatically when game piece is detected
+ * - After detection, arm raises to stow position
+ * - Command ends when arm reaches stow position
  */
 public class AlgaeIntakeCommand extends Command {
+    private enum State {
+        INTAKING,   // Searching for and intaking game piece
+        STOWING     // Game piece acquired, raising arm
+    }
+
     private final SwerveSubsystem m_drive;
     private final ArmSubsystem m_arm;
     private final RollerSubsystem m_roller;
@@ -36,7 +42,7 @@ public class AlgaeIntakeCommand extends Command {
     private final PIDController strafePID;
     private final PIDController rotationPID;
 
-    private boolean m_hasGamePiece = false;
+    private State m_state = State.INTAKING;
     private int m_currentSpikeCount = 0;
     private static final int SPIKE_THRESHOLD_CYCLES = 3; // Debounce cycles
 
@@ -71,7 +77,7 @@ public class AlgaeIntakeCommand extends Command {
 
     @Override
     public void initialize() {
-        m_hasGamePiece = false;
+        m_state = State.INTAKING;
         m_currentSpikeCount = 0;
 
         // Set Limelight to algae detection pipeline
@@ -85,6 +91,17 @@ public class AlgaeIntakeCommand extends Command {
 
     @Override
     public void execute() {
+        switch (m_state) {
+            case INTAKING:
+                executeIntaking();
+                break;
+            case STOWING:
+                executeStowing();
+                break;
+        }
+    }
+
+    private void executeIntaking() {
         // --- Vision Alignment ---
         double forwardInput = m_forwardSupplier.getAsDouble();
         // Apply deadband to forward input
@@ -127,8 +144,20 @@ public class AlgaeIntakeCommand extends Command {
         }
 
         if (m_currentSpikeCount >= SPIKE_THRESHOLD_CYCLES) {
-            m_hasGamePiece = true;
+            // Game piece acquired, transition to stowing
+            m_state = State.STOWING;
         }
+    }
+
+    private void executeStowing() {
+        // Stop driving - let driver take back control after command ends
+        m_drive.drive(new ChassisSpeeds(0, 0, 0));
+
+        // Raise arm to stow position
+        m_arm.setPosition(ArmConstants.ARM_STOW_ANGLE);
+
+        // Stop the rollers now that we have the game piece
+        m_roller.stop();
     }
 
     @Override
@@ -144,6 +173,8 @@ public class AlgaeIntakeCommand extends Command {
 
     @Override
     public boolean isFinished() {
-        return m_hasGamePiece;
+        // Finish when in STOWING state and arm has reached stow position
+        return m_state == State.STOWING &&
+               m_arm.isAtPosition(ArmConstants.ARM_STOW_ANGLE, ArmConstants.ARM_POSITION_TOLERANCE);
     }
 }

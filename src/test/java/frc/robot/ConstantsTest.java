@@ -43,6 +43,22 @@ class ConstantsTest {
     }
 
     @Test
+    void armConstants_stowAngleWithinEncoderRange() {
+        // Absolute encoder typically outputs 0-1 for one rotation
+        assertTrue(ArmConstants.ARM_STOW_ANGLE >= 0.0,
+            "Stow angle should be >= 0");
+        assertTrue(ArmConstants.ARM_STOW_ANGLE <= 1.0,
+            "Stow angle should be <= 1.0 for absolute encoder");
+    }
+
+    @Test
+    void armConstants_stowAngleDifferentFromIntake() {
+        // Stow angle should be different from intake angle (typically higher)
+        assertNotEquals(ArmConstants.ARM_ALGAE_INTAKE_ANGLE, ArmConstants.ARM_STOW_ANGLE,
+            "Stow angle should be different from intake angle");
+    }
+
+    @Test
     void armConstants_positionToleranceIsPositive() {
         assertTrue(ArmConstants.ARM_POSITION_TOLERANCE > 0,
             "Position tolerance must be positive");

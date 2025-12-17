@@ -50,6 +50,7 @@ public final class Constants {
     public static final double ARM_HOLD_UP = 0.05;
     // Position control constants
     public static final double ARM_ALGAE_INTAKE_ANGLE = 0.25; // rotations - TODO: Find and set
+    public static final double ARM_STOW_ANGLE = 0.5; // rotations - raised position after intake - TODO: Find and set
     public static final double ARM_POSITION_TOLERANCE = 0.02; // rotations
     public static final double ARM_POSITION_KP = 2.0; // TODO: Find and set
     public static final double ARM_POSITION_KI = 0.0;

@@ -193,4 +193,81 @@ class AlgaeIntakeCommandTest {
         result = Math.abs(input) < deadband ? 0 : input;
         assertEquals(0, result, 0.001);
     }
+
+    @Test
+    void stateMachine_transitionsFromIntakingToStowing() {
+        // Simulate the state machine logic from the command
+        enum State { INTAKING, STOWING }
+        State state = State.INTAKING;
+        int currentSpikeCount = 0;
+        final int SPIKE_THRESHOLD_CYCLES = 3;
+        final double CURRENT_THRESHOLD = 35.0;
+
+        // Initially in INTAKING state
+        assertEquals(State.INTAKING, state);
+
+        // Simulate 3 current spikes
+        for (int i = 0; i < 3; i++) {
+            double currentReading = 40.0;
+            if (currentReading > CURRENT_THRESHOLD) {
+                currentSpikeCount++;
+            } else {
+                currentSpikeCount = 0;
+            }
+
+            if (currentSpikeCount >= SPIKE_THRESHOLD_CYCLES) {
+                state = State.STOWING;
+            }
+        }
+
+        // Should transition to STOWING after detecting game piece
+        assertEquals(State.STOWING, state, "Should transition to STOWING after game piece detected");
+    }
+
+    @Test
+    void isFinished_requiresStowingStateAndArmAtPosition() {
+        // Simulate the isFinished logic
+        enum State { INTAKING, STOWING }
+        State state = State.INTAKING;
+        double armPosition = 0.25; // intake position
+        double stowAngle = 0.5;
+        double tolerance = 0.02;
+
+        // In INTAKING state - should not be finished
+        boolean isFinished = state == State.STOWING &&
+                             Math.abs(armPosition - stowAngle) < tolerance;
+        assertFalse(isFinished, "Should not be finished while INTAKING");
+
+        // Transition to STOWING, but arm not at position yet
+        state = State.STOWING;
+        isFinished = state == State.STOWING &&
+                     Math.abs(armPosition - stowAngle) < tolerance;
+        assertFalse(isFinished, "Should not be finished until arm reaches stow position");
+
+        // Arm reaches stow position
+        armPosition = 0.5;
+        isFinished = state == State.STOWING &&
+                     Math.abs(armPosition - stowAngle) < tolerance;
+        assertTrue(isFinished, "Should be finished when in STOWING state and arm at position");
+    }
+
+    @Test
+    void isFinished_armMustBeWithinTolerance() {
+        enum State { INTAKING, STOWING }
+        State state = State.STOWING;
+        double stowAngle = 0.5;
+        double tolerance = 0.02;
+
+        // Arm just outside tolerance
+        double armPosition = 0.53; // 0.03 away, outside tolerance of 0.02
+        boolean isFinished = state == State.STOWING &&
+                             Math.abs(armPosition - stowAngle) < tolerance;
+        assertFalse(isFinished, "Should not be finished when arm outside tolerance");
+
+        // Arm within tolerance
+        armPosition = 0.51; // 0.01 away, within tolerance of 0.02
+        isFinished = state == State.STOWING &&
+                     Math.abs(armPosition - stowAngle) < tolerance;
+        assertTrue(isFinished, "Should be finished when arm within tolerance");
+    }
 }
