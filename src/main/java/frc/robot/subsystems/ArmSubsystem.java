@@ -11,6 +11,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmConstants;
@@ -18,7 +19,7 @@ import frc.robot.Constants.ArmConstants;
 public class ArmSubsystem extends SubsystemBase {
 
     private final SparkMax armMotor;
-    private final SparkAbsoluteEncoder absoluteEncoder;
+    private final DutyCycleEncoder absoluteEncoder;
     private final SparkClosedLoopController closedLoopController;
 
     /**
@@ -58,7 +59,7 @@ public class ArmSubsystem extends SubsystemBase {
     armMotor.configure(armConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     // Get encoder and controller references
-    absoluteEncoder = armMotor.getAbsoluteEncoder();
+    absoluteEncoder = new DutyCycleEncoder(0);
     closedLoopController = armMotor.getClosedLoopController();
     }
 
@@ -82,7 +83,7 @@ public class ArmSubsystem extends SubsystemBase {
      * @return Position in rotations (0-1)
      */
     public double getPosition() {
-        return absoluteEncoder.getPosition();
+        return absoluteEncoder.get();
     }
 
     /**

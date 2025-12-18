@@ -49,8 +49,8 @@ public final class Constants {
     public static final double ARM_HOLD_DOWN = -0.05;
     public static final double ARM_HOLD_UP = 0.05;
     // Position control constants
-    public static final double ARM_ALGAE_INTAKE_ANGLE = 0.25; // rotations - TODO: Find and set
-    public static final double ARM_STOW_ANGLE = 0.5; // rotations - raised position after intake - TODO: Find and set
+    public static final double ARM_ALGAE_INTAKE_ANGLE = 0.931; // rotations - TODO: Find and set
+    public static final double ARM_STOW_ANGLE = 0.762; // rotations - raised position after intake - TODO: Find and set
     public static final double ARM_POSITION_TOLERANCE = 0.02; // rotations
     public static final double ARM_POSITION_KP = 2.0; // TODO: Find and set
     public static final double ARM_POSITION_KI = 0.0;
@@ -78,7 +78,7 @@ public final class Constants {
   }
 
   public static final class LimelightConstants {
-    public static final String LIMELIGHT_NAME = "limelight";
+    public static final String LIMELIGHT_NAME = "limelight-lghtsbr";
     public static final int ALGAE_PIPELINE = 0;
     public static final double STRAFE_KP = 0.1; // tune
     public static final double STRAFE_KI = 0.0;
