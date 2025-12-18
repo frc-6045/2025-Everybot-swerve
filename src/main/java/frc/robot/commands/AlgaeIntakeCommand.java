@@ -72,6 +72,8 @@ public class AlgaeIntakeCommand extends Command {
         strafePID.setTolerance(LimelightConstants.TX_TOLERANCE);
         rotationPID.setTolerance(LimelightConstants.TX_TOLERANCE);
 
+        System.out.println("Starting algae intake command!");
+
         addRequirements(drive, arm, roller);
     }
 
@@ -132,7 +134,7 @@ public class AlgaeIntakeCommand extends Command {
 
         // --- Arm Control ---
         m_arm.setPosition(ArmConstants.ARM_ALGAE_INTAKE_ANGLE);
-
+/* 
         // --- Roller Control ---
         m_roller.runRoller(RollerConstants.ROLLER_ALGAE_INTAKE_SPEED);
 
@@ -146,7 +148,7 @@ public class AlgaeIntakeCommand extends Command {
         if (m_currentSpikeCount >= SPIKE_THRESHOLD_CYCLES) {
             // Game piece acquired, transition to stowing
             m_state = State.STOWING;
-        }
+        }*/
     }
 
     private void executeStowing() {

@@ -66,13 +66,14 @@ public class ArmSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Arm/Position", getPosition());
+        SmartDashboard.putNumber("Arm/Arm speed hopefully", armMotor.get());
     }
 
     /**
      * This is a method that makes the arm move at your desired speed
      *  Positive values make it spin forward and negative values spin it in reverse
      *
-     * @param speed motor speed from -1.0 to 1, with 0 stopping it
+     * @param speed motor speed from -1.0 to 1, with 0 stopping it  
      */
     public void runArm(double speed){
         armMotor.set(speed);
@@ -92,6 +93,7 @@ public class ArmSubsystem extends SubsystemBase {
      */
     public void setPosition(double targetPosition) {
         closedLoopController.setReference(targetPosition, ControlType.kPosition);
+        //closedLoopController.
     }
 
     /**
