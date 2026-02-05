@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive Forward"
+            "pathName": "dropAlgaeAndScoreOneCoral"
           }
         },
         {
@@ -15,17 +15,11 @@
           "data": {
             "name": "coralOut"
           }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "knockAlgae"
-          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "dropAlgaeAndScoreOneCoral",
   "choreoAuto": false
 }

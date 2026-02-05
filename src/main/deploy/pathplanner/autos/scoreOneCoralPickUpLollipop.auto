@@ -13,7 +13,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive Forward"
+            "pathName": "scoreOneCoralPickUpLollipopPathOne"
           }
         },
         {
@@ -21,11 +21,17 @@
           "data": {
             "name": "coralOut"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreOneCoralPickUpLollipopPathTwo"
+          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Drive Forward",
+  "folder": "scoreOneCoralPickUpLollipop",
   "choreoAuto": false
 }

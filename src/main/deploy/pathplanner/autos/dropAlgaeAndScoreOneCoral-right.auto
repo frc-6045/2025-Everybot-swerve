@@ -5,15 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "holdArm"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "Drive Forward"
+            "pathName": "dropAlgaeAndScoreOneCoral-right"
           }
         },
         {
@@ -26,6 +20,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Drive Forward",
+  "folder": "dropAlgaeAndScoreOneCoral",
   "choreoAuto": false
 }

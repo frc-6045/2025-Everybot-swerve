@@ -60,7 +60,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_autos = new Autos(m_roller);
+    m_autos = new Autos(m_roller, m_arm);
     // Set up command bindings
     configureBindings();
     Bindings.initBindings(m_drive, m_driverController);

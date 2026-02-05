@@ -21,11 +21,35 @@
           "data": {
             "name": "coralOut"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreTwoCoralPathOne"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreTwoCoralPathTwo"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
+          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Drive Forward",
+  "folder": "scoreTwoCoral",
   "choreoAuto": false
 }

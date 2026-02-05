@@ -19,13 +19,25 @@
         {
           "type": "named",
           "data": {
+            "name": "armTouchUp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "coralOut"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "knockAlgae"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Drive Forward",
+  "folder": "scoreOneCoralAndDropAlgae",
   "choreoAuto": false
 }

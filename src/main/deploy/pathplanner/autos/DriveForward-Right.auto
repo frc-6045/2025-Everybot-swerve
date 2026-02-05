@@ -13,7 +13,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive Forward"
+            "pathName": "Drive Forward Right"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "armTouchUp"
           }
         },
         {

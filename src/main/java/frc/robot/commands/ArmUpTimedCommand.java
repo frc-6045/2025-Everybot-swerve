@@ -4,28 +4,29 @@
 
 package frc.robot.commands;
 
-import frc.robot.Constants.RollerConstants;
-import frc.robot.subsystems.RollerSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.ArmConstants;
+import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.Command;
 
-/** A CoralOutCommand that uses a roller subsystem. */
-public class CoralOutTimedCommand extends Command {
-  private final RollerSubsystem m_roller;
-
+/** An ArmUpCommand that uses an Arm subsystem. */
+public class ArmUpTimedCommand extends Command {
+  private final ArmSubsystem m_arm;
   private final Timer m_Timer = new Timer();
   private double m_time;
 
   /**
-   * Use to score coral into L1.
+   * Powers the arm up, when finished passively holds the arm up.
+   * 
+   * We recommend that you use this to only move the arm into the hardstop
+   * and let the passive portion hold the arm up.
    *
-   * @param roller The subsystem used by this command.
+   * @param arm The subsystem used by this command.
    */
-  public CoralOutTimedCommand(RollerSubsystem roller, double time) {
-    m_roller = roller;
+  public ArmUpTimedCommand(ArmSubsystem arm, double time) {
+    m_arm = arm;
     m_time = time;
-
-    addRequirements(roller);
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
@@ -37,15 +38,15 @@ public class CoralOutTimedCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      //m_roller.runRoller(-(RollerConstants.ROLLER_CORAL_OUT));
-      m_roller.runRoller(-(RollerConstants.ROLLER_CORAL_OUT));
+    m_arm.runArm(ArmConstants.ARM_SPEED_UP);
   }
 
-  // Called once the command ends or is interrupted. Ensures the roller
-  // is not running after we let go of the button. 
+  // Called once the command ends or is interrupted.
+  // Here we run a command that will hold the arm up after to ensure the arm does
+  // not drop due to gravity.
   @Override
   public void end(boolean interrupted) {
-    m_roller.runRoller(0);
+    m_arm.runArm(ArmConstants.ARM_HOLD_UP);
     m_Timer.stop();
     m_Timer.reset();
   }
@@ -57,4 +58,3 @@ public class CoralOutTimedCommand extends Command {
     return false;
   }
 }
-

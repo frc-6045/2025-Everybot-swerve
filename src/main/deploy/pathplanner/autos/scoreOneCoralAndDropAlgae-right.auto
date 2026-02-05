@@ -13,7 +13,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive Forward"
+            "pathName": "Drive Forward Right"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "armTouchUp"
           }
         },
         {
@@ -21,11 +27,17 @@
           "data": {
             "name": "coralOut"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "knockAlgae-right"
+          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Drive Forward",
+  "folder": "scoreOneCoralAndDropAlgae",
   "choreoAuto": false
 }

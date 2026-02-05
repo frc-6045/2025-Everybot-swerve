@@ -8,72 +8,56 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.867078632831293,
-        "y": 3.7470737755179937
+        "x": 5.972788469919531,
+        "y": 4.233807554729779
       },
       "isLocked": false,
       "linkedName": "driveForwardEndTwo"
     },
     {
       "anchor": {
-        "x": 6.132323232323233,
-        "y": 5.519128787878787
+        "x": 6.010353535353536,
+        "y": 5.52929292929293
       },
       "prevControl": {
-        "x": 6.463633779606011,
-        "y": 5.026509128230728
+        "x": 6.133569698887317,
+        "y": 5.264020684035558
       },
       "nextControl": {
-        "x": 5.5866575434072185,
-        "y": 6.330469230131603
+        "x": 5.8606489349951625,
+        "y": 5.851592166044734
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.2230429292929292,
-        "y": 5.874873737373736
+        "x": 4.526388888888889,
+        "y": 6.688005050505051
       },
       "prevControl": {
-        "x": 1.8166015328725522,
-        "y": 6.47646084365602
+        "x": 4.759407280094583,
+        "y": 6.597437786220929
       },
       "nextControl": {
-        "x": 0.7129361859309171,
-        "y": 5.357867265251954
+        "x": 4.233948273415796,
+        "y": 6.801667952269673
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.2230429292929292,
-        "y": 3.995085227272727
+        "x": 1.3145202020202018,
+        "y": 7.064078282828283
       },
       "prevControl": {
-        "x": 1.1639320507055715,
-        "y": 4.801506177741686
-      },
-      "nextControl": {
-        "x": 1.2413189662351278,
-        "y": 3.745754149238545
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 1.7007575757575757,
-        "y": 2.1649621212121213
-      },
-      "prevControl": {
-        "x": 1.6467193189271898,
-        "y": 2.4311979796595957
+        "x": 0.8573805601608897,
+        "y": 7.093387224609221
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "scoreTwoCoralPathOneEnd"
     }
   ],
   "rotationTargets": [],
@@ -90,10 +74,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 125.34010692155773
   },
   "reversed": false,
-  "folder": "scoreOneCoralAndDropAlgae",
+  "folder": "scoreTwoCoral",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -179.2747757009408

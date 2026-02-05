@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.321527777777777,
-        "y": 3.995085227272727
+        "x": 7.2808712121212125,
+        "y": 6.159469696969698
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.051633670579802,
-        "y": 4.001211398266941
+        "x": 6.273034530073925,
+        "y": 5.8464545746951595
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftStart"
     },
     {
       "anchor": {
-        "x": 5.898547979797979,
-        "y": 3.995085227272727
+        "x": 5.24804292929293,
+        "y": 5.336174242424242
       },
       "prevControl": {
-        "x": 7.006283165389412,
-        "y": 3.9740232482081455
+        "x": 6.389409904830394,
+        "y": 5.85981751914834
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "driveForwardEndTwo"
+      "linkedName": "driveForwardLeftEnd"
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.2747757009408
+    "rotation": -122.36093755936986
   },
   "reversed": false,
   "folder": "Drive Forward",

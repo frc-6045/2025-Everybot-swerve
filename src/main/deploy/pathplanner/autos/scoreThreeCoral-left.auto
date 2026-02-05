@@ -1,0 +1,79 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "holdArm"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Drive Forward Left"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreTwoCoralPathOne-left"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.77
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreTwoCoralPathTwo"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreThreeCoralPathOne"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.77
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreThreeCoralPathTwo"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "scoreThreeCoral",
+  "choreoAuto": false
+}

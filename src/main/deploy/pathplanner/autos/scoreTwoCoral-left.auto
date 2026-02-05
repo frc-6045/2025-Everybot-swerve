@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "holdArm"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Drive Forward Left"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreTwoCoralPathOne-left"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "scoreTwoCoralPathTwo"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "coralOut"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "scoreTwoCoral",
+  "choreoAuto": false
+}
