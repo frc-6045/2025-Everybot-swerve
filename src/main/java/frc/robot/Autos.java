@@ -27,6 +27,7 @@ public class Autos {
         autoChooser = new SendableChooser<Command>();
         autoChooser.addOption("Score Two Coral", AutoBuilder.buildAuto("scoreTwoCoralEFKLSides"));
         autoChooser.addOption("Drive Forward", AutoBuilder.buildAuto("DriveForward"));
+        autoChooser.addOption("Score One Coral From Side Start", AutoBuilder.buildAuto("AutoThatWillWorkWith6045"));
 
         SmartDashboard.putData("autos", autoChooser);
     }
